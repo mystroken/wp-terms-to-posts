@@ -25,4 +25,7 @@ foreach ($terms as $term){
 
 	// Links the post a taxonomy
 	wp_set_object_terms($post_id, $term->parent, 'institution_country');
+
+	// Delete the term
+	wp_delete_term($term->ID, 'institution_country');
 }
