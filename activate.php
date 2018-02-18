@@ -27,5 +27,5 @@ foreach ($terms as $term){
 	wp_set_object_terms($post_id, $term->parent, 'institution_country');
 
 	// Delete the term
-	wp_delete_term($term->ID, 'institution_country');
+	wp_delete_term($term->term_id, 'institution_country');
 }
