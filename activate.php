@@ -20,7 +20,9 @@ foreach ($terms as $term){
 		'post_status'   => 'publish'
 	);
 
+	// Creates the post type from the custom taxonomy
 	$post_id = wp_insert_post($post_args);
 
+	// Links the post a taxonomy
 	wp_set_object_terms($post_id, $term->parent, 'institution_country');
 }
