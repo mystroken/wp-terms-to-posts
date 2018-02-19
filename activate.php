@@ -12,12 +12,12 @@ $terms = get_terms( 'institution_country', array(
 foreach ($terms as $term){
 
 	$post_args = array(
-		'post_title'    => $term->name,
-		'post_name'     => $term->slug,
-		'post_type'     => 'institution',
-		'post_content'  => $term->description,
-		'post_excerpt'  => $term->description,
-		'post_status'   => 'publish'
+		'post_title'   => $term->name,
+		'post_name'    => $term->slug,
+		'post_type'    => 'institution',
+		'post_content' => $term->description,
+		'post_excerpt' => $term->description,
+		'post_status'  => 'publish'
 	);
 
 	// Creates the post type from the custom taxonomy
