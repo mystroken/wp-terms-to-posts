@@ -42,7 +42,7 @@ load_plugin_textdomain('riffeac', false, basename( dirname( __FILE__ ) ) . '/lan
 | Includes core files
 |------------------------------------------------------------------------
 |
-| 
+|
 */
 require_once dirname(__FILE__) . '/functions.php';
 
