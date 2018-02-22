@@ -1,10 +1,10 @@
 <?php
+if ( ! defined( 'WPINC' ) ) die; // If this file is called directly, abort.
 
-// If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) die;
 
 $post_type = 'institution';
 $terms_taxonomy = 'institution_country';
+
 
 // Selects the concerned terms
 $terms = get_terms( $terms_taxonomy, array(
@@ -15,6 +15,7 @@ $terms = get_terms( $terms_taxonomy, array(
 
 foreach ($terms as $term){
 
+	// Creates the post type from the custom taxonomy.
 	$post_args = array(
 		'post_title'   => $term->name,
 		'post_name'    => $term->slug,
@@ -23,8 +24,6 @@ foreach ($terms as $term){
 		'post_excerpt' => $term->description,
 		'post_status'  => 'publish'
 	);
-
-	// Creates the post type from the custom taxonomy.
 	$post_id = wp_insert_post($post_args);
 
 	// Links the post to a taxonomy.
