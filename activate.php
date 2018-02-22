@@ -1,15 +1,15 @@
 <?php
 if ( ! defined( 'WPINC' ) ) die; // If this file is called directly, abort.
 
-
-$post_type = 'institution';
-$terms_taxonomy = 'institution_country';
+global $wpdb;
+$post_type = 'project';
+$terms_taxonomy = 'category';
 
 
 // Selects the concerned terms
 $terms = get_terms( $terms_taxonomy, array(
 	'hide_empty' => false,
-	'exclude' => '3,4,5,6,10,21,22,23,24'
+	'term_taxonomy_id' => array(19, 38, 43, 55)
 ));
 
 
@@ -26,8 +26,23 @@ foreach ($terms as $term){
 	);
 	$post_id = wp_insert_post($post_args);
 
-	// Links the post to a taxonomy.
-	wp_set_object_terms($post_id, $term->parent, $terms_taxonomy);
+	// Links custom posts to post
+	$term_posts = get_posts(array(
+		'category' => $term->term_id,
+		'post_type' =>  'post'
+	));
+
+	foreach($term_posts as $term_post){
+		$wpdb->insert(
+			$wpdb->prefix . 'mb_relationships',
+			array(
+				'from' => $term_post->ID,
+				'to' => $post_id,
+				'type' => 'posts_to_projects',
+			),
+			array('%d', '%d', '%s')
+		);
+	}
 
 	// Deletes the term.
 	wp_delete_term($term->term_id, $terms_taxonomy);
