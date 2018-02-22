@@ -37,7 +37,14 @@ if ( !defined( 'ABSPATH' ) ) exit;
 load_plugin_textdomain('riffeac', false, basename( dirname( __FILE__ ) ) . '/languages/');
 
 
-//require_once dirname(__FILE__) . '/functions.php';
+/**
+|------------------------------------------------------------------------
+| Includes core files
+|------------------------------------------------------------------------
+|
+| 
+*/
+require_once dirname(__FILE__) . '/functions.php';
 
 
 /*
